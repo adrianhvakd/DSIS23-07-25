@@ -1,0 +1,32 @@
+<ul class="pagination">
+    {{#if paginacion.anterior}}
+        <li class="disabled" style="color: gray;">
+        <i class="material-icons">chevron_left</i></a>      
+        </li></li>
+    {{else}}
+        <li  >       
+        <a href="?paginaActual={{paginacion.paginaAnterior}}&itemPaginas={{paginacion.itemPaginas}}">
+            <i class="material-icons">chevron_left</i></a>      
+        </li>
+    {{/if}}
+    {{#each paginacion.paginas}}
+    {{#if this.activo}}
+    <li class="active">
+    {{else}}
+    <li >
+    {{/if}}
+    <a href="?paginaActual={{this.skip}}&itemPaginas={{../paginacion.itemPaginas}}">
+    {{this.pagina}}</a></li>
+    {{/each}}    
+    {{#if paginacion.siguiente}}
+        <li class="disabled" style="color: gray;">
+            <i class="material-icons">chevron_right</i>
+        </li>
+    {{else}}
+        <li 
+        class="waves-effect">
+        <a href="?paginaActual={{paginacion.paginaSiguiente}}&itemPaginas={{paginacion.itemPaginas}}">
+            <i class="material-icons">chevron_right</i></a></li>
+    {{/if}}
+  </ul>
+
