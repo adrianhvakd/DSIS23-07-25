@@ -1,32 +1,32 @@
 {{>titulo }}
+<div class="container">
+    <form method="get" action="">
+    <input type="text" name="buscar" placeholder="Buscar..." value="{{buscar}}" />
+    <button type="submit" class="btn">Buscar</button>
+        {{#if buscar}}
+        <a href="/cliente">
+            <button type="button" class="btn">Limpiar</button>
+        </a>
+        {{/if}}
+    </form>
 
-<form method="get" action="">
-  <input type="text" name="buscar" placeholder="Buscar..." value="{{buscar}}" />
-  <button type="submit" class="btn">Buscar</button>
-    {{#if buscar}}
-    <a href="/cliente">
-        <button type="button" class="btn">Limpiar</button>
-    </a>
+    <table>
+        <tr>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>codigo Catastral</th>
+            <th>Pago Impuestos</th>
+        </tr>
+        {{#each clientes.result}}
+        <tr>
+            <td>{{this.nombres}}</td>
+            <td>{{this.apellidos}}</td>
+            <td>{{this.codVivienda}} </td>
+            <td>{{this.pagoImpuesto}} </td>
+        </tr>
+        {{/each}}
+    </table>
+    {{#if paginacion}}
+    {{>paginar}}
     {{/if}}
-</form>
-
-
-<table>
-    <tr>
-        <th>Nombres</th>
-        <th>Apellidos</th>
-        <th>codigo Catastral</th>
-        <th>Pago Impuestos</th>
-    </tr>
-    {{#each clientes.result}}
-    <tr>
-        <td>{{this.nombres}}</td>
-        <td>{{this.apellidos}}</td>
-        <td>{{this.codVivienda}} </td>
-        <td>{{this.pahoImpuesto}} </td>
-    </tr>
-    {{/each}}
-</table>
-{{#if paginacion}}
-  {{>paginar}}
-{{/if}}
+</div>

@@ -8,14 +8,21 @@ export class ClienteService {
     constructor (
         @InjectRepository(ClienteEntity)
         private clienteRepository:Repository<ClienteEntity>){}
-    public async getAllPagination(limit,offset,buscar=''){
+    public async getAllPagination(limit,offset,buscar){
         let where: Partial<ClienteEntity>[] = [];
+        const buscarLower = buscar?.toLowerCase();
+        const isBooleanSearch = buscarLower === 'true' || buscarLower === 'false';
+        const booleanValue = isBooleanSearch ? buscarLower === 'true' : undefined;
         if (buscar && buscar.trim() !== '') {
-            where = [
+            if (isBooleanSearch) {
+                where.push({ pagoImpuesto: booleanValue });
+            } else {
+                where = [
                 { nombres: ILike(`%${buscar}%`) },
                 { apellidos: ILike(`%${buscar}%`) },
                 { codVivienda: ILike(`%${buscar}%`) },
-            ];
+                ];
+            }
         }
         const options: any = {
             where: where.length ? where : undefined,
