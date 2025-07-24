@@ -1,0 +1,12 @@
+{{>titulo}}
+hola qr
+<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+<canvas id="canvas"></canvas>
+<script>
+  const canvas = document.getElementById('canvas');
+  QRCode.toCanvas(canvas, 'Nombre: {{pago.cliente}} Monto: {{pago.monto}} Numero de boleta: {{pago.numeroBoleta}}', function (error) {
+    if (error) console.error(error);
+    else console.log('QR generado correctamente');
+  });
+</script>
+

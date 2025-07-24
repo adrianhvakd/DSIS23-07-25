@@ -1,9 +1,11 @@
-import { Controller, Get, Query, Render, Res } from '@nestjs/common';
+import { Controller, Get, Param, Query, Render, Res } from '@nestjs/common';
 import { Response } from 'express';
 import { ClienteService } from './cliente.service';
 import { Paginate } from 'src/shared/paginate';
 import { createReadStream } from 'fs';
 import { join } from 'path';
+import { printPDF } from 'src/shared/printPDF';
+import { Reporte } from 'src/shared/reporte';
 import { Print } from 'src/shared/print';
 @Controller('cliente')
 export class ClienteController {
@@ -29,12 +31,30 @@ export class ClienteController {
     @Get('GenerarPdf')
     async generarPdf(@Res() res:Response){
         const clientes = await this.clienteService.getAll();
-        
-        const printReport = new Print()
+        const printReport:Reporte = new printPDF()
         printReport.generarReportCliente(clientes,'test.pdf')
-
         const file = createReadStream(join(process.cwd(),'reports/test.pdf'));
         return file.pipe(res);
+    }
+    @Get('GenerarPrint')
+    async generarPrint(@Res() res:Response){
+        const clientes = await this.clienteService.getAll();
+        const printReport:Reporte = new Print()
+        return res.send(printReport.generarReportCliente(clientes,''));
+    }
+
+    @Get('qr/:id')
+    qr(@Param() {id}, @Res() res:Response){
+
+        const pago = {
+            cliente:'Juanito Perez',
+            fecha:Date.now,
+            numeroBoleta: 123,
+            monto:1000
+        }
+        return res.render('cliente/qr',{
+            title: 'pago',
+            pago});
     }
     
 }

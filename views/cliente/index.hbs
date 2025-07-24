@@ -1,4 +1,21 @@
 {{>titulo }}
+<div class="card">
+    <a onclick="
+    let win=window.open('/cliente/GenerarPrint', 'popup', 'width=600,height=600');
+    win.print();
+    win.window.onafterprint = function(){
+        win.window.close();
+    }
+    return false;"  target="_blank" class="waves-effect waves-light btn">
+        <i class="material-icons left">print</i>
+        Imprimir
+    </a>
+    <a href="/cliente/GenerarPdf" class="waves-effect waves-light btn">
+        <i class="material-icons left">attach_file</i>
+        Generar PDF
+    </a>
+    <a href="/cliente/qr/2">QR</a>
+</div>
 <div class="container">
     <form method="get" action="">
     <input type="text" name="buscar" placeholder="Buscar..." value="{{buscar}}" />
