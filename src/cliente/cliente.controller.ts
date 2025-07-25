@@ -56,5 +56,64 @@ export class ClienteController {
             title: 'pago',
             pago});
     }
+
+    @Get('map')
+    mapa(@Res() res:Response){
+        const puestos = [
+            {
+                numero:1,
+                ubicacion: 'H. Vasquez potoquito',
+                lat1: -19.584879,
+                laong1: -65.760508,
+                lat2: -19.584880,
+                laong2: -65.760509,
+                lat3: -19.584878,
+                laong3: -65.760508,
+                lat4: -19.584879,
+                laong4: -65.760509,
+                precio: 80,
+                disponible: false,
+                vendido: 'juanito perez',
+                factura: 11547
+            },
+            {
+                numero:2,
+                ubicacion: 'H. Vasquez potoquito',
+                lat1: -19.584611,
+                laong1: -65.760573,
+                lat2: -19.584612,
+                laong2: -65.760573,
+                lat3: -19.584612,
+                laong3: -65.760574,
+                lat4: -19.584611,
+                laong4: -65.760574,
+                precio: 80,
+                disponible: true,
+                vendido: 'Pepito perez',
+                factura: 11547
+            },
+            {
+                numero:3,
+                ubicacion: 'H. Vasquez potoquito',
+                lat1: -19.584250,
+                laong1: -65.760707,
+                lat2: -19.584251,
+                laong2: -65.760707,
+                lat3: -19.584251,
+                laong3: -65.760708,
+                lat4: -19.584250,
+                laong4: -65.760708,
+                precio: 80,
+                disponible: true,
+                vendido: 'Ivana perez',
+                factura: 11547
+            }
+        ];
+        res.render('cliente/map',
+            {
+                title: 'Mapa del recorrido',
+                puestos
+            });
+    }
     
 }
