@@ -49,7 +49,6 @@
     function onMapClick(e){
         console.log(e);
         alert("aea"+e.latlng);
-        var maker = L.marker([e.latlng.lat,e.latlng.lng]).addTo(map);
         document.getElementById('lat').value = e.latlng.lat;
         document.getElementById('long').value = e.latlng.lng;
     }

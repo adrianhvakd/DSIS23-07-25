@@ -12,7 +12,7 @@ import { ClienteEntity } from './cliente/entities/cliente.entity';
       port: 3306,
       username: 'root',
       password: '',
-      database: 'vacaciones',
+      database: 'vacaciones2',
       entities: [ClienteEntity],
       synchronize: true,
     }), ClienteModule,],
